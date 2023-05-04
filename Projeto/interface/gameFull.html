@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ITW 2022/23 - Olympic Games edition Details</title>
+    <link rel="icon" href="../images/icons8-olympic-rings-office-l-96.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../myCSS.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" tabindex="Olympics"><img src="../images/Olympic_rings.png" height="24" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html"><i class="fa fa-user-o text-warning"></i> Athletes</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html"><i class="fa fa-trophy"></i> Competitions</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><i class=" fa fa-flag-o text-danger"></i> Countries</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="games.html"><i class="fa fa-map-marker text-success"></i> Games</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="modalities.html"><i class="fa fa-soccer-ball-o text-primary"></i> Modalities</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="statistics.html"><i class="fa fa-bar-chart" aria-hidden="true"></i> Statistics</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Work Area-->
+    <div class="container" style="padding-bottom: 40px;">
+        <!-- ko if:Name().length > 0 -->
+        <div class="py-2 border-bottom mb-3">
+            <h2 data-bind="text:Name() +' [' + Id() + ']'"></h2>
+        </div>
+        <div class="row border-bottom mx-0  my-1">
+            <div class="col-2">Country Name</div><div class="col-10" data-bind="text: CountryName"></div>
+        </div>
+        <div class="row border-bottom mx-0  my-1">
+            <div class="col-2">City</div><div class="col-10" data-bind="text: City"></div>
+        </div>
+        <div class="row border-bottom mx-0  my-1"><div class="col-2">Season</div>
+            <div class="col-10" data-bind="text: Season"></div>
+        </div>
+        <div class="row border-bottom mx-0  my-1">
+            <div class="col-2">Year</div><div class="col-10" data-bind="text: Year"></div>
+        </div>
+        <div class="row border-bottom mx-0  my-1" data-bind="visible: Logo() != '' && Logo() != null">
+            <div class="col-2">Logo</div><div class="small col-10">
+                <img class="img-thumbnail" data-bind="attr:{src: Logo}"><br /><i class="fa fa-link"></i><br />
+                [<a class="link-dark text-decoration-none" data-bind="attr: { href: Logo }, text: Logo" target="_blank"></a>]</div>
+        </div>
+        <div class="row border-bottom mx-0  my-1" data-bind="visible: Photo() != '' && Photo() != null">
+            <div class="col-2">Photo</div><div class="small col-10">
+                <img class="img-thumbnail" data-bind="attr:{src: Photo}"><br />
+                <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Photo }, text : Photo" target="_blank"></a>]
+            </div>
+        </div>
+        <!-- /ko -->
+
+
+        <div class="accordion" id="accordionExample" style="padding-bottom: 10px;">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Athletes
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="row mx-0  my-1">
+                            
+
+                            <ul class="list-group " data-bind="foreach: Athletes">
+                                <a class="rounded-3 my-1" style="text-decoration: none;" data-bind="attr: { href:'./AthleteDetails.html?id=' + Id }">
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <p class="col-12 col-md-7 py-2" data-bind="text: Name" style="margin: 0;"></p>
+                                            <div class="d-flex col-12 col-md-2 col-lg-3 offset-xl-1" style="align-items:center;">
+                                                <p style="padding: 0px 3px; margin: 0;">Best Position:</p>
+                                                <!-- ko if: BestPosition == 1 -->
+                                                <p style="margin: 0;">Gold Medal</p>
+                                                <!-- /ko -->
+                                                <!-- ko if: BestPosition == 2 -->
+                                                <p style="margin: 0;">Silver Medal</p>
+                                                <!-- /ko -->
+                                                <!-- ko if: BestPosition == 3 -->
+                                                <p style="margin: 0;">Bronze Medal</p>
+                                                <!-- /ko -->
+                                                <!-- ko if: BestPosition == 4 -->
+                                                <p style="margin: 0;">No Medal</p>
+                                                <!-- /ko -->
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Modalities
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="row mx-0  my-1">
+                            <ul class="list-group" data-bind="foreach: Modalities">
+                                <a class="rounded-3 my-1" style="text-decoration: none;" data-bind="attr: { href:'./modalityDetails.html?id=' + Id }">
+                                    <li class="list-group-item" style="display: flex;" >
+                                        <div class="d-flex justify-content-center" style="width: 150px;">
+                                            <!-- ko if: Photo-->
+                                            <img data-bind="attr:{src: Photo }" style="height: 75px; " />
+                                            <!-- /ko -->
+                                            <!-- ko ifnot: Photo-->
+                                            <img src="../images/Olympic_rings.png" style="height: 75px; "/>
+                                            <!-- /ko -->
+                                        </div>
+                                        <p data-bind="text: Name" style="padding: 25px 15px; margin: 0;"></p>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Competitions
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div data-bind="foreach: Competitions">
+                            <a class="border rounded-3 m-2 p-2 d-inline-block bg-light text-dark" style="text-decoration: none;" data-bind="text: Name , attr: { href:'./competitionDetails.html?id=' + Id }"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <a href="./games.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
+        <a data-bind="attr: { href:'./gameDetails.html?id=' + Id() }" class="btn btn-default btn-sm small"><i class="fa fa-th"></i> Go Back</a>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <img src="../images/Olympic_rings.png" height="30" /> Loading data...
+                    </h5>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fa fa-spin fa-3x fa-refresh"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Work Area -->
+    <nav class="navbar navbar-light bg-light fixed-bottom">
+        <div class="container small">
+            <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2022/23</div>
+            <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
+            <div class="navbar-nav">
+                <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a></div>
+            </div>
+        </div>
+    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="../scripts/gameFull.js"></script>
+</body>
+</html>

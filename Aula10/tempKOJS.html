@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="container" style="padding-top: 10px;">
+            <select id="citySelector" class="form-select">
+                <option value="">Select a city name</option>
+                <option value="Sever do Vouga, PT">Sever do Vouga</option>
+                <option value="Aveiro, PT">Aveiro</option>
+                <option value="Coimbra, PT">Coimbra</option>
+                <option value="Porto, PT">Porto</option>
+                <option value="Paris, FR">Paris</option>
+                <option value="London, UK">Londres</option>
+                <option value="New York, USA">Nova Iorque</option>
+            </select>
+            <table class="table table-striped d-none">
+                <tr><td class="col-xs-2">City Name:</td><td class="col-xs-10" data-bind="text: cityName"></td></tr>
+                <tr><td class="col-xs-2">Coordinates:</td><td class="col-xs-10" data-bind="text: coordinates"></td></tr>
+                <tr><td class="col-xs-2">Weather:</td><td class="col-xs-10" ><img  data-bind="attr:{src: iconurl}"/><span data-bind="text: weather"></span></td></tr>
+                <tr><td class="col-xs-2">Temperature:</td><td class="col-xs-10" data-bind="text: temp"></td></tr>
+                <tr><td class="col-xs-2">Pressure:</td><td class="col-xs-10" data-bind="text: pressure"></td></tr>
+                <tr><td class="col-xs-2">Humidity:</td><td class="col-xs-10" data-bind="text: humidity"></td></tr>
+                <tr><td class="col-xs-2">Data</td>
+                    <td class="col-xs-10" ><pre data-bind="text: alldata"></pre></td>
+                </tr>
+            </table>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
+            integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#citySelector").change(function () {
+                    $.ajax({
+                    url: "http://api.openweathermap.org/data/2.5/weather",
+                    data: {
+                    q: $("#citySelector").val(),
+                    APPID: '815f48a5cd008e6fed502e29db214e2a'
+                    },
+                    success: function (data) {
+                        //knockoutjs
+                        var city = {
+                            cityName: data.name + ' / ' + data.sys.country,
+                            coordinates: 'Lon (º): ' + data.coord.lon + ' / Lat (º):' + data.coord.lat,
+                            weather: data.weather[0].description,
+                            temp: data.main.temp + 'ºK / ' + (data.main.temp - 273.15).toFixed(2) + 'ºC',
+                            pressure: data.main.pressure,
+                            humidity: data.main.humidity + '%',
+                            iconurl: "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png",
+                            alldata: JSON.stringify(data, null, 4),
+                            };
+                        ko.applyBindings(city);
+        
+                        //jquery
+                        if (data.name){
+                            $('table').removeClass('d-none');
+                        }
+                        else {
+                            $('table').addClass('d-none');
+                            alert(data.message);
+                        }
+                    },
+                    error: function () {
+                        $('table').addClass('d-none');
+                        alert('Erro!');
+                    }
+                });
+            });
+            });
+        </script>    
+    </body>
+</html>

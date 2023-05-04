@@ -1,0 +1,114 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ITW - teste prático 5 2022/23</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="teste5.css" />
+</head>
+<body>
+    <!--- TODO caroussel aqui-->
+    <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true" aria-label="First slide"></li>
+            <li data-bs-target="#carouselId" data-bs-slide-to="1" aria-label="Second slide"></li>
+            <li data-bs-target="#carouselId" data-bs-slide-to="2" aria-label="Third slide"></li>
+            <li data-bs-target="#carouselId" data-bs-slide-to="3" aria-label="Fourth slide"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <img src=".\imagens\banner1.jpg" class="w-100 d-block" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img src=".\imagens\banner2.jpg" class="w-100 d-block" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img src=".\imagens\banner3.jpg" class="w-100 d-block" alt="Third slide">
+            </div>
+            <div class="carousel-item">
+                <img src=".\imagens\banner4.jpg" class="w-100 d-block" alt="Fourth slide">
+            </div>
+        </div>
+    </div>
+    
+
+
+    <div class="container" >
+        <form action="http://192.168.160.36/FormEcho.aspx">
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-1 offset-5"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
+                <div class="col-1">
+                    <span class="input-group flex-nowrap"  title="Quantidade total de produtos"><input type="text" id="quantidades" class="form-control border border-primary" value="0" aria-label=""></span>
+                    
+                </div>
+                <div class="col-2">
+                    <span class="input-group flex-nowrap" title="Preço total da compra"><input type="text" class="form-control border border-primary"  id="total" value="0" aria-label=""></span>
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-primary" onclick="return validar()" title="Enviar pedido"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-dark" onclick="limpar()" title="Limpar compra"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                </div>
+            </div>
+
+            <hr />
+            <h1 class="h1">Produtos Sugeridos</h1>
+            <hr />
+
+            <div class="container">
+                <div class="row">
+                <div class="col-3">
+                    <img src="Imagens/918645001_1.jpg" class="border border-primary" />
+                    <h5>Iogurte Banana Açaí Wonderfruits Yaos Nestlé</h5>
+                    <small>4x110 g | 4,43 €/Kg</small>
+                    <h6><span class="">1,95</span> <span class=""><s>€2,99 €</s></span></h6>
+                    <input type="hidden" name="precoproduto1" id="precoproduto1" value="1.95" />
+                    <input type="hidden" name="produto1" id="produto1" value="0" />
+                    <hr />
+                    <button type="button" style="width:100%" class="btn btn-primary" onclick="comprar(1)"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Comprar</button>
+                </div>
+                <div class="col-3">
+                    <img src="Imagens/31812_1.jpg" class="border border-primary" />
+                    <h5>Dióspiro Persimmon Rijo</h5>
+                    <small>1 UN ~ 450g | 2,49 €/Kg</small>
+                    <h6><span class="">2,49 €</span></h6>
+                    <input type="hidden" name="precoproduto2" id="precoproduto2" value="2.49" />
+                    <input type="hidden" name="produto2" id="produto2" value="0" />
+                    <hr />
+                    <button type="button" style="width:100%" class="btn btn-primary" onclick="comprar(2)"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Comprar</button>
+                </div>
+                <div class="col-3">
+                    <img src="Imagens/34666_1.jpg" class="border border-primary" />
+                    <h5>Castanha Cal. 60/80</h5>
+                    <small>1 UN ~ 500g | 2,99 €/Kg</small>
+                    <h6><span class="">2,99 €</span> <span class=""><s>€3,99 €</s></span></h6>
+                    <input type="hidden" name="precoproduto3" id="precoproduto3" value="2.49" />
+                    <input type="hidden" name="produto3" id="produto3" value="0" />
+                    <hr />
+                    <button type="button" style="width:100%" class="btn btn-primary" onclick="comprar(3)"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Comprar</button>
+                </div>
+                <div class="col-3">
+                    <img src="Imagens/43218_1.jpg" class="border border-primary" />
+                    <h5>Banana Importada</h5>
+                    <small>1 UN ~ 200g | 0,99 €/Kg</small>
+                    <h6><span class="">0,99 €</span></h6>
+                    <input type="hidden" name="precoproduto4" id="precoproduto4" value="0.99" />
+                    <input type="hidden" name="produto4" id="produto4" value="0" />
+                    <hr />
+                    <button type="button" style="width:100%" class="btn btn-primary" onclick="comprar(4)"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Comprar</button>
+                </div>
+            </div>
+            </div>
+        </form>
+        <hr />
+        <p class="">Esta página possui informação retirada de <a href="https://mercadao.pt/store/pingo-doce" target="_blank">https://mercadao.pt/store/pingo-doce</a>. Não pode ser confundido com o site original e serve apenas de exemplo para este teste prático.</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="teste5.js"></script>
+</body>
+</html>
